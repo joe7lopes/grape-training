@@ -1,5 +1,6 @@
 package com.grape.ratingservice.controllers;
 
+import com.grape.ratingservice.entities.Rating;
 import com.grape.ratingservice.entities.RatingDto;
 import com.grape.ratingservice.services.RatingService;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,22 @@ public class RatingController {
         return service.getRatingBy(roomId)
                 .map(RatingDto::new)
                 .orElseThrow(() -> new RoomNotFoundException(roomId));
+    }
+
+    @PostMapping("/ratings")
+    @ResponseStatus(HttpStatus.CREATED)
+    public RatingDto createRating(@RequestBody RatingDto ratingDto){
+        Rating rating = convertToEntity(ratingDto);
+        Rating savedRating = service.save(rating);
+        RatingDto response = new RatingDto();
+        response.rate = savedRating.getRate();
+        response.roomId = savedRating.getRoomId();
+        response.userId = savedRating.getUserId();
+        return response;
+    }
+
+    private Rating convertToEntity(RatingDto dto) {
+        return new Rating(dto.roomId, dto.userId, dto.rate);
     }
 
     @ExceptionHandler(RoomNotFoundException.class)

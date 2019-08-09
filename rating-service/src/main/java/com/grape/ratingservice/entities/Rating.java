@@ -13,6 +13,9 @@ public final class Rating {
     private Long userId;
     private float rate;
 
+    public Rating() {
+    }
+
     public Rating(Long roomId, Long userId, float rate) {
         this.roomId = roomId;
         this.userId = userId;

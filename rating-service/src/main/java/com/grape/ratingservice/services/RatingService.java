@@ -1,6 +1,7 @@
 package com.grape.ratingservice.services;
 
 import com.grape.ratingservice.entities.Rating;
+import com.grape.ratingservice.entities.RatingDto;
 import com.grape.ratingservice.repositories.RatingRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,11 @@ public class RatingService {
 
     public Optional<Rating> getRatingBy(Long roomId) {
         return repository.findByRoomId(roomId);
+    }
+
+    //for test purposes
+    public Rating save(Rating rating) {
+        return repository.save(rating);
     }
 
     //rate
