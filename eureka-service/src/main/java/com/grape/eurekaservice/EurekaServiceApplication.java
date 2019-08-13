@@ -16,11 +16,11 @@ public class EurekaServiceApplication implements CommandLineRunner {
         SpringApplication.run(EurekaServiceApplication.class, args);
     }
 
-    @Value("${server.port}")
-    private String port;
+    @Value("${message}")
+    private String message;
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("port from config "+ port);
+        System.out.println("custom prop "+ message);
     }
 }
