@@ -1,0 +1,7 @@
+applications:
+- name: eureka-service-joao
+  instances: 1
+  path: ./target/eureka-service-0.0.1-SNAPSHOT.jar
+  env:
+    CONFIG_SERVER_URL: http://config-service.cf.env1.aws1.test.cloudboostr.com
+    SPRING_PROFILES_ACTIVE: cloud
